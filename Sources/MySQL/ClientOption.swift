@@ -6,8 +6,11 @@
 //  Copyright © 2015 ColemanCDA. All rights reserved.
 //
 
-//import SwiftFoundation
-import CMySQL
+#if os(Linux)
+    import CMySQLLinux
+#else
+    import CMySQLMac
+#endif
 
 public enum ClientOption/*: OptionsBitmask*/ {
     

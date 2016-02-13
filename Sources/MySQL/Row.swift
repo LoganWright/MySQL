@@ -6,8 +6,12 @@
 //  Copyright © 2015 ColemanCDA. All rights reserved.
 //
 
-import SwiftFoundation
-import CMySQL
+import Foundation
+#if os(Linux)
+    import CMySQLLinux
+#else
+    import CMySQLMac
+#endif
 
 public extension MySQL {
     
@@ -15,7 +19,7 @@ public extension MySQL {
         
         // MARK: - Properties
         
-        public let values: [Data]
+        public let values: [NSData]
         
         // MARK: - Initialization
         
@@ -26,7 +30,7 @@ public extension MySQL {
             
             let lastFieldIndex = fieldCount - 1
             
-            var values = [Data]()
+            var values = [NSData]()
             
             for i in 0...lastFieldIndex {
                 
@@ -34,7 +38,7 @@ public extension MySQL {
                 
                 let length = fieldLengths[i]
                 
-                let data = Data.fromBytePointer(fieldValuePointer, length: Int(length))
+                let data = NSData(bytes: fieldValuePointer, length: Int(length))
                 
                 values.append(data)
             }

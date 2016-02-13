@@ -6,7 +6,6 @@
 //  Copyright © 2015 ColemanCDA. All rights reserved.
 //
 
-import SwiftFoundation
 import XCTest
     
 #if os(Linux)
